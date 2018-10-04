@@ -162,9 +162,20 @@
         <audio data-key="112" src="./pianoSounds/high_b.mp3"></audio>
     </main>
 
+    <script>
+        const body = document.querySelector('body')
+        body.addEventListener('keypress', function(event){
+            const audioElement = document.querySelector(`audio[data-key="${event.keyCode}"]`)
+            audioElement.currentTime = 0;
+            audioElement.play()
+            const pianoKeyElement = document.querySelector(`polygon[data-key="${event.keyCode}"]`)
+            pianoKeyElement.classList.add("pressed")
+            audioElement.onended = function(){
+                pianoKeyElement.classList.remove('pressed')
+            }
+        })
+    </script>
 </body>
 
-<script>
-</script>
 
 </html>
